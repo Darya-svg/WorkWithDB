@@ -1,0 +1,39 @@
+spring:
+  datasource:
+
+    url: "jdbc:postgresql://localhost:5432/Records"
+    driver-class:
+      name: "org.postgresql.Driver"
+    username: postgres
+    password: 123
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+
+kafka:
+  application-id: "db-app"
+  bootstrap-server-url: "localhost:9092"
+  schema-registry-url: "http://localhost:8081"
+
+topic:
+  name:
+    source: "records_from_api"
+    reversed: "reversed_record"
+
+server:
+  port: "8091"
+
+
+logging:
+  level:
+    org.springframework.web: ERROR
+    com.example: INFO
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d %-5level %logger : %msg%n"
+  file:
+    name: C:/workWithDB/logs
